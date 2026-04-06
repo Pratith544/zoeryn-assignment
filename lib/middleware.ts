@@ -6,20 +6,20 @@ import { ApiError } from './errors';
 
 export type AuthenticatedRouteHandler = (
   req: NextRequest,
-  { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> },
+  { params }: { params: any },
   user: JwtPayload
 ) => Promise<NextResponse>;
 
 export type NextRouteHandler = (
   req: NextRequest,
-  { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }
+  { params }: { params: any }
 ) => Promise<NextResponse>;
 
 export function withAuth(
   handler: AuthenticatedRouteHandler,
   ...requiredPermissions: Permission[]
 ): NextRouteHandler {
-  return async (req: NextRequest, { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }): Promise<NextResponse> => {
+  return async (req: NextRequest, { params }: { params: any }): Promise<NextResponse> => {
     const resolvedParams = await Promise.resolve(params);
     const token = getTokenFromRequest(req);
 
@@ -65,7 +65,7 @@ export function withRole(...requiredRoles: UserRole[]): (
   handler: AuthenticatedRouteHandler
 ) => NextRouteHandler {
   return (handler: AuthenticatedRouteHandler) => {
-    return async (req: NextRequest, { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }): Promise<NextResponse> => {
+    return async (req: NextRequest, { params }: { params: any }): Promise<NextResponse> => {
       const resolvedParams = await Promise.resolve(params);
       const token = getTokenFromRequest(req);
 
