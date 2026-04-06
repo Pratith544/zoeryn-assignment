@@ -297,7 +297,6 @@ function LoginForm() {
                     fontWeight: 500,
                     color: '#0F0F0E',
                     textDecoration: 'underline',
-                    textDecorationOffset: '4px',
                   }}
                 >
                   Register
