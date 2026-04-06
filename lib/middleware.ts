@@ -6,17 +6,21 @@ import { ApiError } from './errors';
 
 export type AuthenticatedRouteHandler = (
   req: NextRequest,
-  context: any,
+  { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> },
   user: JwtPayload
 ) => Promise<NextResponse>;
 
-export type NextRouteHandler = (req: NextRequest, context: any) => Promise<NextResponse>;
+export type NextRouteHandler = (
+  req: NextRequest,
+  { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }
+) => Promise<NextResponse>;
 
 export function withAuth(
   handler: AuthenticatedRouteHandler,
   ...requiredPermissions: Permission[]
 ): NextRouteHandler {
-  return async (req: NextRequest, context: any): Promise<NextResponse> => {
+  return async (req: NextRequest, { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }): Promise<NextResponse> => {
+    const resolvedParams = await Promise.resolve(params);
     const token = getTokenFromRequest(req);
 
     if (!token) {
@@ -53,7 +57,7 @@ export function withAuth(
       }
     }
 
-    return handler(req, context, user);
+    return handler(req, { params: resolvedParams }, user);
   };
 }
 
@@ -61,7 +65,8 @@ export function withRole(...requiredRoles: UserRole[]): (
   handler: AuthenticatedRouteHandler
 ) => NextRouteHandler {
   return (handler: AuthenticatedRouteHandler) => {
-    return async (req: NextRequest, context: any): Promise<NextResponse> => {
+    return async (req: NextRequest, { params }: { params: Promise<Record<string, string | string[]>> | Record<string, string | string[]> }): Promise<NextResponse> => {
+      const resolvedParams = await Promise.resolve(params);
       const token = getTokenFromRequest(req);
 
       if (!token) {
@@ -90,7 +95,7 @@ export function withRole(...requiredRoles: UserRole[]): (
         return NextResponse.json(response, { status: 403 });
       }
 
-      return handler(req, context, user);
+      return handler(req, { params: resolvedParams }, user);
     };
   };
 }

@@ -6,9 +6,13 @@ import { ApiResponse, JwtPayload, IUser } from '@/types/index';
 import { handleApiError, ApiError } from '@/lib/errors';
 import { Types } from 'mongoose';
 
-async function handleGET(req: NextRequest, context: any, user: JwtPayload) {
+async function handleGET(req: NextRequest, { params }: { params: Promise<{ id: string }> | { id: string } }, user: JwtPayload) {
   try {
-    const { id } = context.params;
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
+
+    console.log('User ID received (GET):', id);
+    console.log('Is valid ObjectId:', Types.ObjectId.isValid(id));
 
     // Validate ObjectId
     if (!Types.ObjectId.isValid(id)) {
@@ -34,9 +38,13 @@ async function handleGET(req: NextRequest, context: any, user: JwtPayload) {
   }
 }
 
-async function handlePATCH(req: NextRequest, context: any, user: JwtPayload) {
+async function handlePATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> | { id: string } }, user: JwtPayload) {
   try {
-    const { id } = context.params;
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
+
+    console.log('User ID received (PATCH):', id);
+    console.log('Is valid ObjectId:', Types.ObjectId.isValid(id));
 
     // Validate ObjectId
     if (!Types.ObjectId.isValid(id)) {
@@ -91,9 +99,13 @@ async function handlePATCH(req: NextRequest, context: any, user: JwtPayload) {
   }
 }
 
-async function handleDELETE(req: NextRequest, context: any, user: JwtPayload) {
+async function handleDELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> | { id: string } }, user: JwtPayload) {
   try {
-    const { id } = context.params;
+    const resolvedParams = await Promise.resolve(params);
+    const { id } = resolvedParams;
+
+    console.log('User ID received (DELETE):', id);
+    console.log('Is valid ObjectId:', Types.ObjectId.isValid(id));
 
     // Validate ObjectId
     if (!Types.ObjectId.isValid(id)) {
