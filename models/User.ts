@@ -45,6 +45,7 @@ const userSchema = new Schema<IUserDocument>(
 userSchema.pre<IUserDocument>('save', async function() {
   if (!this.isModified('passwordHash')) return;
   if (this.passwordHash && this.passwordHash.startsWith('$2')) return;
+  if (!this.passwordHash) return;
   const hashedPassword = await bcryptjs.hash(this.passwordHash, 12);
   this.passwordHash = hashedPassword;
 });
