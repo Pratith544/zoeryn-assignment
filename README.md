@@ -240,5 +240,19 @@ npm run build    # Production build
 npm run start    # Start production server
 npm run seed     # Seed database
 ```
+## Test Credentials
 
+After seeding the database, use these credentials to test the application:
+
+| Role | Email | Password | Permissions |
+|------|-------|----------|-------------|
+| Admin | admin@finance.com | Admin@1234 | Full access to all features |
+| Analyst | analyst@finance.com | Analyst@1234 | Create & edit records, view all data |
+| Viewer | viewer@finance.com | Viewer@1234 | View-only access to records |
+
+### Deployed Instance
+
+For the live deployment at https://zoeryn-assignment.vercel.app:
+- Use the same credentials above
+- Ensure your production MongoDB is seeded with `npm run seed` before deployment
 
