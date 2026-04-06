@@ -241,4 +241,4 @@ npm run start    # Start production server
 npm run seed     # Seed database
 ```
 
-For help and feedback, visit: https://github.com/anthropics/claude-code/issues
+
