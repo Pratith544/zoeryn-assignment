@@ -51,7 +51,7 @@ export function RecentActivity({ records }: RecentActivityProps) {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: '16px',
-                paddingY: '12px',
+                padding: '12px 0',
                 borderBottom: idx < list.length - 1 ? '1px solid #D4D2CB' : 'none'
               }}
             >
