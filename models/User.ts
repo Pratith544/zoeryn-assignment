@@ -42,10 +42,15 @@ const userSchema = new Schema<IUserDocument>(
 );
 
 // Hash password before saving
-userSchema.pre('save', async function() {
-  if (!this.isModified('passwordHash')) return
-  if (this.passwordHash && this.passwordHash.startsWith('$2')) return
-  this.passwordHash = await bcryptjs.hash(this.passwordHash, 12)
+userSchema.pre<IUserDocument>('save', async function(next) {
+  if (!this.isModified('passwordHash')) return next();
+  if (this.passwordHash && this.passwordHash.startsWith('$2')) return next();
+  try {
+    this.passwordHash = await bcryptjs.hash(this.passwordHash, 12);
+    next();
+  } catch (error) {
+    next(error as Error);
+  }
 });
 
 // Method to compare password
