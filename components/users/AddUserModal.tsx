@@ -102,7 +102,7 @@ export function AddUserModal({
         if (!open) handleClose()
       }}
     >
-      <DialogContent style={{ maxWidth: '480px', gap: '0', border: '1px solid #D4D2CB', backgroundColor: '#F5F4F0', padding: '32px', borderRadius: '8px' }}>
+      <DialogContent style={{ maxWidth: '480px', gap: '0', border: '1px solid #D4D2CB', backgroundColor: '#F5F4F0', padding: '32px', borderRadius: '8px', maxHeight: '90vh', overflowY: 'auto' }}>
         <DialogHeader style={{ border: 'none', padding: '0' }}>
           <DialogTitle style={{ fontFamily: 'var(--font-syne)', fontSize: '20px', fontWeight: 700, color: '#0F0F0E' }}>
             Add User

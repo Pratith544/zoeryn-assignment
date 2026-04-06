@@ -112,7 +112,7 @@ export function RecordModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-[480px] gap-0 border border-[#D4D2CB] bg-[#F5F4F0] p-8 dark:border-[#242422] dark:bg-[#0C0C0B]" style={{ background: '#F5F4F0', borderColor: '#D4D2CB' }}>
+      <DialogContent className="max-w-[480px] gap-0 border border-[#D4D2CB] bg-[#F5F4F0] p-8 dark:border-[#242422] dark:bg-[#0C0C0B]" style={{ background: '#F5F4F0', borderColor: '#D4D2CB', maxHeight: '90vh', overflowY: 'auto' }}>
         <DialogHeader className="border-0 p-0" style={{ border: 'none', padding: 0 }}>
           <DialogTitle className="font-syne text-xl font-bold text-[#0F0F0E] dark:text-[#F0EFE9]" style={{ color: '#0F0F0E', fontFamily: 'Syne, sans-serif', fontSize: '20px', fontWeight: 700 }}>
             {record ? 'Edit Record' : 'Create Record'}
