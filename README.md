@@ -32,7 +32,7 @@ The backend provides:
 
 1. **Clone and install dependencies**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Pratith544/zoeryn-assignment.git
    cd zoeryn
    npm install
    ```
@@ -40,7 +40,7 @@ The backend provides:
 2. **Configure environment variables**:
    Create a `.env.local` file in the root directory:
    ```env
-   MONGODB_URI=mongodb://localhost:27017/finance_dashboard
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/finance_dashboard
    JWT_SECRET=your_super_secret_jwt_key_here_change_in_production
    JWT_EXPIRES_IN=7d
    NODE_ENV=development
@@ -254,5 +254,5 @@ After seeding the database, use these credentials to test the application:
 
 For the live deployment at https://zoeryn-assignment.vercel.app:
 - Use the same credentials above
-- Ensure your production MongoDB is seeded with `npm run seed` before deployment
+- The database is pre-seeded. Use the test credentials above to explore all three roles.
 
