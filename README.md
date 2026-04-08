@@ -40,7 +40,7 @@ The backend provides:
 2. **Configure environment variables**:
    Create a `.env.local` file in the root directory:
    ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/finance_dashboard
+   MONGODB_URI=mongodb://localhost:27017/finance_dashboard
    JWT_SECRET=your_super_secret_jwt_key_here_change_in_production
    JWT_EXPIRES_IN=7d
    NODE_ENV=development
